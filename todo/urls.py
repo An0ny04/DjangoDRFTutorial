@@ -1,8 +1,9 @@
 from django.urls import path
-from .views import getRoutes, getBooks, saveBooks
+from .views import getRoutes, BooksAPI
 
 urlpatterns = [
     path("", getRoutes, name="Routes"),
-    path("books", getBooks, name="Books"),
-    path("savebooks", saveBooks, name="SaveBooks"),
+    path("books", BooksAPI.as_view(), name="Books"),
+    # path("books/<int:id>", BooksAPI.as_view(), name="Books"),
+    # path("savebooks", saveBooks, name="SaveBooks"),
 ]
