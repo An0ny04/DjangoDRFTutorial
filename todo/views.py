@@ -3,7 +3,8 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Books
 from rest_framework.views import APIView
-from .serializers import BookSerializer
+from .serializers import BookSerializer, RegisterSerializer
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -47,3 +48,20 @@ class BooksAPI(APIView):
         Book.is_deleted = True
         Book.save()
         return Response({"message": "Deleted"})
+
+
+class RegisterAPI(APIView):
+    def post(self, request, *args, **kwargs):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors)
+
+
+class GetUserAPI(APIView):
+    def get(self, request, *args, **kwargs):
+        user = request.user.id
+        data = User.objects.filter(id=user).values()
+        return Response({"data": data})
