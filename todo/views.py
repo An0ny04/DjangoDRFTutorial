@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .models import Books
+from .models.author import Author
+from .models.books import Books
 from rest_framework.views import APIView
 from .serializers import BookSerializer, RegisterSerializer
 from django.contrib.auth.models import User

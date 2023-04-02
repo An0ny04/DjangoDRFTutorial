@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Books, Author
+from .models.author import Author
+from .models.books import Books
 from django.contrib.auth.models import User
 
 
